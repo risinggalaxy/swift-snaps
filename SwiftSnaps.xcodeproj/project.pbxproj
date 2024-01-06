@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7310FB6E2B49ED9200492BBD /* VendorClientDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7310FB6D2B49ED9200492BBD /* VendorClientDependency.swift */; };
 		7368BBFA2B46987E00BF5585 /* SwiftSnapsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7368BBF92B46987E00BF5585 /* SwiftSnapsApp.swift */; };
 		7368BBFC2B46987E00BF5585 /* VendorsListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7368BBFB2B46987E00BF5585 /* VendorsListScreen.swift */; };
 		7368BBFE2B46987F00BF5585 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7368BBFD2B46987F00BF5585 /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7310FB6D2B49ED9200492BBD /* VendorClientDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorClientDependency.swift; sourceTree = "<group>"; };
 		7368BBF62B46987E00BF5585 /* SwiftSnaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftSnaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7368BBF92B46987E00BF5585 /* SwiftSnapsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSnapsApp.swift; sourceTree = "<group>"; };
 		7368BBFB2B46987E00BF5585 /* VendorsListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorsListScreen.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				73DEFA222B4716A70054CBD3 /* URI.swift */,
+				7310FB6D2B49ED9200492BBD /* VendorClientDependency.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				73DEFA1E2B46FC100054CBD3 /* AppFeature.swift in Sources */,
 				73DEFA232B4716A70054CBD3 /* URI.swift in Sources */,
 				7368BBFC2B46987E00BF5585 /* VendorsListScreen.swift in Sources */,
+				7310FB6E2B49ED9200492BBD /* VendorClientDependency.swift in Sources */,
 				7368BC2D2B46C98F00BF5585 /* VendorPage.swift in Sources */,
 				7368BC2F2B46CAA000BF5585 /* VendorsListCell.swift in Sources */,
 				73ACE9712B48B3CC00773AEC /* VendorArticleResponse.swift in Sources */,

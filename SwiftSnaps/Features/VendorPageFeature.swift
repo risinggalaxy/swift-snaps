@@ -8,35 +8,9 @@
 import ComposableArchitecture
 import Foundation
 
-struct VendorPageClient {
-    var fetch: @Sendable (String) async throws -> [Article]
-}
-
-extension VendorPageClient: DependencyKey {
-    static let liveValue = Self { vendorID in
-        do {
-            if let url = URI.getHeadlines(by: vendorID) {
-                let (data, _) = try await URLSession.shared.data(from: url)
-                let response = try JSONDecoder().decode(VendorArticleResponse.self, from: data)
-                return response.articles
-            } else {
-                fatalError()
-            }
-        } catch let error {
-            fatalError(error.localizedDescription)
-        }
-    }
-}
-
-extension DependencyValues {
-    var vendorArticles: VendorPageClient {
-        get { self[VendorPageClient.self] }
-        set { self[VendorPageClient.self] = newValue }
-    }
-}
-
 @Reducer
 struct VendorPageFeature {
+    
     struct State: Equatable {
         var vendorID: String = .init()
         var articles: [Article] = []
@@ -44,11 +18,16 @@ struct VendorPageFeature {
     }
     
     enum Action: Equatable {
+        
+        static func == (lhs: VendorPageFeature.Action, rhs: VendorPageFeature.Action) -> Bool {
+            true
+        }
+        
         case loadData
-        case fetchArticles([Article])
+        case fetchArticles(Any)
     }
     
-    @Dependency(\.vendorArticles) var vendorArticles
+    @Dependency(\.vendorsClient) var vendorArticles
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -56,11 +35,14 @@ struct VendorPageFeature {
             case .loadData:
                 state.viewIsLoading = true
                 return .run { [vendorID = state.vendorID] send in
-                    try await send(.fetchArticles(self.vendorArticles.fetch(vendorID)))
+                    try await send(.fetchArticles(self.vendorArticles.fetch(URI.getHeadlines(by: vendorID), .vendorPage)))
                 }
-            case let .fetchArticles(articles):
-                state.viewIsLoading = false
-                state.articles = articles
+            case let .fetchArticles(response):
+                if let response = response as? VendorArticleResponse {
+                    state.viewIsLoading = false
+                    let articles = response.articles
+                    state.articles = articles
+                }
                 return .none
             }
         }
