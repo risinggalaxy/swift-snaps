@@ -12,12 +12,12 @@ struct VendorsResponse: Decodable, Equatable {
     let vendors: [Vendor]
     
     enum CodingKeys: String, CodingKey {
-        case vendors = "sources"
+        case sources = "sources"
     }
  
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        vendors = try container.decode([Vendor].self, forKey: .vendors)
+        vendors = try container.decode([Vendor].self, forKey: .sources)
     }
 }
 
