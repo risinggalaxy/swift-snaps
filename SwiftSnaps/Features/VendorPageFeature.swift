@@ -17,8 +17,8 @@ extension VendorPageClient: DependencyKey {
         do {
             if let url = URI.getHeadlines(by: vendorID) {
                 let (data, _) = try await URLSession.shared.data(from: url)
-                let articles = try JSONDecoder().decode(VendorArticleResponse.self, from: data)
-                return articles.articles
+                let response = try JSONDecoder().decode(VendorArticleResponse.self, from: data)
+                return response.articles
             } else {
                 fatalError()
             }
